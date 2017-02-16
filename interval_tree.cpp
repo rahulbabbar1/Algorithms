@@ -61,6 +61,89 @@ node* searchInterval(node *intervals,int l,int r)
 
 }
 
+
+void swap_intervals(node* node1, node* node2){
+	node1->low=node2->low;
+	node1->high=node2->high;
+}
+void deleteNode(node* current,node* root, node* parent, bool head){
+	//head=true here indicates it is the root node
+	int child=0;
+	bool left=false, right=false;
+	if(current->low <= parent->low) left=true;
+	else right=true;
+
+	if(current->left) child++;
+	if(current->right) child++;
+
+	if(child==0){
+		if(head){
+			parent=NULL;
+			return;
+		}
+		if(left) parent->left=NULL;
+		else parent->right=NULL;
+	}
+	else if(child==1){
+		if(head){
+			if(current->left) root=root->left;
+			else root=root->right;
+			return;
+		}
+		if(left){
+			if(current->right) parent->left=current->right;
+			else parent->left=current->left;
+		}
+		else{
+			if(current->right) parent->right=current->right;
+			else parent->right=current->left;
+		}
+	}
+	else{
+		node* temp=current;
+		temp=temp->left;
+		if(temp->right){
+			while(temp->right){
+				parent=temp;
+				temp=temp->right;
+			}
+			swap_intervals(current, temp);
+			parent->right=NULL;
+		}
+		else{
+			swap_intervals(current, temp);
+			deleteNode(temp, root,current, false);
+		}
+	}
+}
+node* deleteInterval(node* root,int l, int r)
+{
+	node* temp_node = new node;
+	temp_node->low = l;
+	temp_node->high = r;
+	temp_node->max_high = r;
+    node* current=new node();
+    current = root;
+	node *parent= new node();
+	parent = root;
+	while(true){
+		if(current==NULL){
+			cout<<"The interval you requested to delete does not exist"<<endl;
+			break;
+		}
+		if(temp_node->low < current->low){
+			parent=current; current=current->left;
+		}
+		else if(temp_node->low > current->low){
+			parent=current; current=current->right;
+		}
+		else{
+			deleteNode(current,root, parent, false);
+			break;
+		}
+	}
+}
+
 int main(){
 	int n;
 	cin>>n;
@@ -92,6 +175,12 @@ int main(){
 				cout<<"Interval not found"<<"\n";
 			else
 				cout<<"Interval found with low = "<<interval->low<<", high = "<<interval->high<<" and max = "<<interval->max_high<<"\n";
+		}
+		else if(type==4){
+			int low,high;
+			cin>>low>>high;
+			deleteInterval(intervals,low,high);
+			cout<<"Interval Deleted"<<"\n";
 		}
 		else
 			break;
