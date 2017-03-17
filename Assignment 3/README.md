@@ -7,6 +7,7 @@ Implement Bellman Ford Algorithm and run it for a number of a number of inputs.
 [1pt] Chart showing the running time vs input (vertices and edges) [Submit a pdf/picture]
 
 ###Input:
+
 	6
 	8
 	5
@@ -21,5 +22,12 @@ Implement Bellman Ford Algorithm and run it for a number of a number of inputs.
 
 
 ###Output:
+
 	5 5 7 9 8 0 
+
+
+### Time vs n graph:
+
+![Graph](/graph.jpg)
+
 
