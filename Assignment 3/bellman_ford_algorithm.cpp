@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int MAX = 2147483647;
+int MAX = 1000000000;
 
 void printArray(int array[],int n){
 	for(int i=0;i<n;i++){
