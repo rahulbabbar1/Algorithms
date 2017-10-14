@@ -1,2 +1,2 @@
 # Algorithms
-	Interval Tree added for CSN-212 Tutorial 3 By Subhankar Mishra.
+	This repo is for submission of assignment, course under Subhankar Mishra.
