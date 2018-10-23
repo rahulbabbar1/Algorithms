@@ -29,6 +29,6 @@ Output:
 ### Time vs n graph:
 
 
-![Graph](/graph.jpg?raw=true "Time vs N graph")
+![Graph](/Assignment%203/graph.jpg?raw=true "Time vs N graph")
 
 
